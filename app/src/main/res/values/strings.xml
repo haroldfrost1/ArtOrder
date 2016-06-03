@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">ArtOrder</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_order_list_acitivty">OrderListAcitivty</string>
+    <string name="_3_days_left">N days left</string>
+    <string name="due_16_04">Due: dd/mm</string>
+    <string name="order_thumbnail">order thumbnail</string>
+    <string name="client">Dummy</string>
+    <string name="payed">Dummypayed</string>
+    <string name="orderlistactivity_tag">OrderListActivity</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="description">Description</string>
+    <string name="quote">Quote</string>
+    <string name="create_date_value">[Create Date]</string>
+    <string name="client_edittext">Client</string>
+    <string name="creator_value">[Creator]</string>
+    <string name="place_order">Place Order</string>
+    <string name="due_date">Due Date:</string>
+    <string name="due_in">Due in:</string>
+    <string name="zero">0</string>
+    <string name="orderformactivity_tag">Order Form Activity Unexpected exception:</string>
+    <string name="addorder_success">Success!</string>
+    <string name="addorder_fail">Failed to place order.</string>
+    <string name="error_invalid_client_name">Invalid client name!</string>
+    <string name="reset">Reset</string>
+    <string name="quote_0">0.0</string>
+    <string name="error_invalid_phone">Invalid phone number!</string>
+    <string name="error_invalid_description">Invalid Description!</string>
+    <string name="error_invalid_quote">Invalid quote!</string>
+    <string name="error_invalid_daynumber">Invalid day number!</string>
+    <string name="day">Day</string>
+    <string name="week">Week</string>
+    <string name="month">Month</string>
+
+</resources>

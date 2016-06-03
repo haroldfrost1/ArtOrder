@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/orderlist_margin"
+    android:paddingLeft="@dimen/orderlist_margin"
+    android:paddingRight="@dimen/orderlist_margin"
+    android:paddingTop="@dimen/orderlist_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="id11965252.com.artorder.View.OrderListAcitivty"
+    tools:showIn="@layout/activity_order_list">
+
+    <ProgressBar
+        android:id="@+id/orderlistactivity_retrieve_list_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/orderlistactivity_swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/orderlistactivity_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+</RelativeLayout>
