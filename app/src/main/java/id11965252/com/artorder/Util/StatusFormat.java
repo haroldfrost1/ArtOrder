@@ -7,7 +7,7 @@ package id11965252.com.artorder.Util;
  */
 public class StatusFormat {
 
-    public static String formatStatus(int statusCode){
+    public static String format(int statusCode){
         switch(statusCode){
             case 1:
             case 2:

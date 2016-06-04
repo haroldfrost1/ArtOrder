@@ -1,57 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <RelativeLayout
-        android:id="@+id/order_adapter_item_right_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true">
-
-        <TextView
-            android:id="@+id/order_adapter_item_days_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/_3_days_left" />
-
-        <TextView
-            android:id="@+id/order_adapter_item_due_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/order_adapter_item_days_left"
-            android:text="@string/due_16_04" />
-    </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/order_adapter_item_thumbnail"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:contentDescription="@string/order_thumbnail"
-        android:src="@android:drawable/sym_action_chat" />
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="@dimen/order_adapter_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/order_adapter_vertical_margin">
 
     <TextView
         android:id="@+id/order_adapter_item_client"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@id/order_adapter_item_thumbnail"
-        android:layout_toLeftOf="@id/order_adapter_item_right_box"
-        android:layout_toRightOf="@id/order_adapter_item_thumbnail"
-        android:layout_toStartOf="@id/order_adapter_item_right_box"
         android:text="@string/client" />
 
 
     <TextView
         android:id="@+id/order_adapter_item_status"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/order_adapter_item_client"
-        android:layout_toEndOf="@id/order_adapter_item_thumbnail"
-        android:layout_toRightOf="@id/order_adapter_item_thumbnail"
-        android:text="@string/payed" />
+        android:text="@string/paid"/>
 
+    <TextView
+        android:id="@+id/order_adapter_item_days_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/_3_days_left" />
+
+    <TextView
+        android:id="@+id/order_adapter_item_due_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/order_adapter_item_days_left"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/due_16_04" />
 </RelativeLayout>

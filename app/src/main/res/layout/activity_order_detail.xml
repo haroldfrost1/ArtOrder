@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/order_detail_parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="id11965252.com.artorder.View.OrderDetailActivity">
+
+    <TextView
+        android:id="@+id/order_detail_id_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/id_value" />
+
+    <TextView
+        android:id="@+id/order_detail_client_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/client_value" />
+
+    <TextView
+        android:id="@+id/order_detail_phone_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/phone_value" />
+
+    <TextView
+        android:id="@+id/order_detail_description_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description_value" />
+
+    <TextView
+        android:id="@+id/order_detail_quote_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/quote_value" />
+
+    <TextView
+        android:id="@+id/order_detail_receipt_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/receipt_value" />
+
+    <TextView
+        android:id="@+id/order_detail_create_date_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/create_date_value" />
+
+    <TextView
+        android:id="@+id/order_detail_status_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/status_value" />
+
+    <TextView
+        android:id="@+id/order_detail_due_date_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/due_date_value" />
+
+    <TextView
+        android:id="@+id/order_detail_creator_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/creator_value" />
+
+    <ProgressBar
+        android:id="@+id/order_detail_progress_bar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bill" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ready" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/archive" />
+
+</LinearLayout>

@@ -27,7 +27,8 @@
             android:name=".View.OrderListAcitivty"
             android:label="@string/title_activity_order_list_acitivty"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".View.AddOrderFormActivity"></activity>
+        <activity android:name=".View.AddOrderFormActivity" />
+        <activity android:name=".View.OrderDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package id11965252.com.artorder.View;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import org.springframework.http.converter.xml.SimpleXmlHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -62,6 +64,8 @@ public class AddOrderFormActivity extends AppCompatActivity implements View.OnCl
         mQuoteEditText = (EditText) findViewById(R.id.order_form_quote_value);
         mCreateDateTextView = (TextView) findViewById(R.id.order_form_create_date_value);
         mDueDayNumberView = (EditText) findViewById(R.id.addorderformactivity_due_number);
+        mDueDayNumberView.setOnEditorActionListener(this);
+
         mResetButton = (Button) findViewById(R.id.order_form_reset_button);
         mResetButton.setOnClickListener(this);
 
@@ -153,9 +157,9 @@ public class AddOrderFormActivity extends AppCompatActivity implements View.OnCl
         boolean cancel = false;
         View focusView = null;
 
-        mDueDayNumberView.setOnEditorActionListener(this);
 
-        // Check for a valid day number
+
+        // Check for a valid day number and cast into a long value @dueDate
         if (TextUtils.isEmpty(daysStr)) {
             mDueDayNumberView.setError(getString(R.string.error_field_required));
             focusView = mDueDayNumberView;
@@ -238,7 +242,7 @@ public class AddOrderFormActivity extends AppCompatActivity implements View.OnCl
             // perform the place order attempt.
             mOrder = new Order(client, phone, System.currentTimeMillis(), description, quote, 0.0, creator, 0, dueDate);
             mAddOrderTask = new AddOrderTask(this);
-//            mAddOrderTask.execute();
+            mAddOrderTask.execute();
         }
     }
 
@@ -280,21 +284,39 @@ public class AddOrderFormActivity extends AppCompatActivity implements View.OnCl
 
     /**
      * Called when an action is being performed.
-     *
-     * @param v        The view that was clicked.
-     * @param actionId Identifier of the action.  This will be either the
-     *                 identifier you supplied, or {@link EditorInfo#IME_NULL
-     *                 EditorInfo.IME_NULL} if being called due to the enter key
-     *                 being pressed.
-     * @param event    If triggered by an enter key, this is the event;
-     *                 otherwise, this is null.
-     * @return Return true if you have consumed the action, else false.
      */
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         switch (v.getId()){
             case R.id.addorderformactivity_due_number:
+                String dayNumberStr = mDueDayNumberView.getText().toString();
+                TextView dueDateValueView = (TextView)findViewById(R.id.addorderformactivity_due_date_value);
 
+                // Check for a valid day number
+                if (TextUtils.isEmpty(dayNumberStr)) {
+                    dueDateValueView.setError(getString(R.string.error_field_required));
+                } else if (!isDayNumberValid(dayNumberStr)) {
+                    dueDateValueView.setTextColor(Color.RED);
+                    dueDateValueView.setText(R.string.error_invalid_day_number);
+                } else {
+                    // TODO: parse day number to actual date
+                    int numberOfDays = Integer.parseInt(mDueDayNumberView.getText().toString());
+                    switch (mDurationSpinner.getSelectedItemPosition()){
+                        case 0:
+                            break;
+                        case 1:
+                            numberOfDays *= 7;
+                            break;
+                        case 2:
+                            numberOfDays *= 30;
+                            break;
+                        default:
+                            break;
+                    }
+                    long dueDate = System.currentTimeMillis() + TimeUnit.MILLISECONDS.convert(numberOfDays, TimeUnit.DAYS);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    dueDateValueView.setText(simpleDateFormat.format(new Date(dueDate)));
+                }
                 return true;
         }
         return false;
@@ -307,6 +329,7 @@ public class AddOrderFormActivity extends AppCompatActivity implements View.OnCl
 
         public AddOrderTask(Context context) {
             this.mContext = context;
+            this.mProgressBar = (ProgressBar)findViewById(R.id.addorderformactivity_progress_bar);
         }
 
         /**
@@ -365,7 +388,22 @@ public class AddOrderFormActivity extends AppCompatActivity implements View.OnCl
         protected void onPostExecute(Response response) {
             super.onPostExecute(response);
             mProgressBar.setVisibility(View.GONE);
-            Toast.makeText(mContext, response.getResult() == Constants.ADDORDER_SUCCESS ? getString(R.string.addorder_success) : getString(R.string.addorder_fail), Toast.LENGTH_SHORT).show();
+
+            // Check if there is a response
+            if (response != null) {
+                if (response.getResult() == Constants.ADDORDER_SUCCESS) {
+                    Toast.makeText(mContext, getString(R.string.addorder_success), Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(mContext, getString(R.string.addorder_fail), Toast.LENGTH_SHORT).show();
+                    mAddOrderTask = null;
+                }
+            }else{
+                // No response from server
+                Toast.makeText(mContext, getString(R.string.no_response_from_server), Toast.LENGTH_SHORT).show();
+                mAddOrderTask = null;
+            }
+
         }
     }
 }

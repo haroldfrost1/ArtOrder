@@ -6,8 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -66,7 +64,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
         // Format Status code to user-readable string
         int status = order.getStatus();
-        holder.mStatusView.setText(StatusFormat.formatStatus(status));
+        holder.mStatusView.setText(StatusFormat.format(status));
         switch(status){
             case 1:
             case 2:
@@ -85,12 +83,21 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         String daysLeftStr = "";
         long daysLeft = dueDate - System.currentTimeMillis();
         daysLeftStr += TimeUnit.DAYS.convert(daysLeft, TimeUnit.MILLISECONDS);
-        daysLeftStr += " Days Left";
+        if (Integer.parseInt(daysLeftStr) < 1){
+            daysLeftStr = "Overdue";
+        }
+        else if (Integer.parseInt(daysLeftStr) == 1){
+            daysLeftStr += " Day Left";
+        }
+        else {
+            daysLeftStr += " Days Left";
+        }
         holder.mDaysLeftView.setText(daysLeftStr);
 
         // Format Due date
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm");
-        holder.mDueDateView.setText(simpleDateFormat.format(new Date(dueDate)));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM");
+        String dueDateStr = "Due: " + simpleDateFormat.format(new Date(dueDate));
+        holder.mDueDateView.setText(dueDateStr);
     }
 
     /**
@@ -112,7 +119,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         public TextView mStatusView;
         public TextView mDaysLeftView;
         public TextView mDueDateView;
-        public ImageView mThumbnailView;
 
         public OrderViewHolder(View itemView) {
             super(itemView);
@@ -120,7 +126,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             mStatusView = (TextView) itemView.findViewById(R.id.order_adapter_item_status);
             mDaysLeftView = (TextView) itemView.findViewById(R.id.order_adapter_item_days_left);
             mDueDateView = (TextView) itemView.findViewById(R.id.order_adapter_item_due_date);
-            mThumbnailView = (ImageView) itemView.findViewById(R.id.order_adapter_item_thumbnail);
         }
     }
 }
